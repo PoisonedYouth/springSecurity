@@ -1,6 +1,7 @@
 package com.poisonedyouth.springSecurity.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="address")
@@ -11,10 +12,13 @@ public class Address {
 	@Column(name="address_id")
 	private int id;
 	@Column(name="street")
+	@NotEmpty(message = "*Please provide your street")
 	private String street;
 	@Column(name = "zip")
+	@NotEmpty(message = "*Please provide your zip code")
 	private String zip;
 	@Column(name = "city")
+	@NotEmpty(message = "*Please provide your city")
 	private String city;
 
 	public int getId() {

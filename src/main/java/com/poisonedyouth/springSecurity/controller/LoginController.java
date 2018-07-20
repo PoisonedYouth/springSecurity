@@ -1,6 +1,5 @@
 package com.poisonedyouth.springSecurity.controller;
 
-import com.poisonedyouth.springSecurity.domain.Role;
 import com.poisonedyouth.springSecurity.domain.User;
 import com.poisonedyouth.springSecurity.service.RoleService;
 import com.poisonedyouth.springSecurity.service.UserService;
@@ -12,12 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class LoginController {
@@ -71,6 +66,7 @@ public class LoginController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		model.addAttribute("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+		model.addAttribute("user", user);
 		return "user";
 	}
 

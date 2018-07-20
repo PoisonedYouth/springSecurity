@@ -34,6 +34,7 @@ public class User {
 	private int active;
 	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL )
 	@JoinColumn(name="role_id")
+	@NotNull(message = "*Please select your role")
 	private Role role;
 	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL )
 	@JoinColumn(name = "address_id")
