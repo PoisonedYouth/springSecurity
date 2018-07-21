@@ -26,10 +26,20 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+	public User findUserById(Long id) {
+		return userRepository.findById(id).get();
+	}
+
+	@Override
 	public void saveUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		user.setActive(1);
 		userRepository.save(user);
+	}
+
+	@Override
+	public void deleteUser(User user) {
+		userRepository.delete(user);
 	}
 
 	@Override

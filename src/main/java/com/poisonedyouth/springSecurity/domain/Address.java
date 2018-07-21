@@ -10,7 +10,7 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="address_id")
-	private int id;
+	private Long id;
 	@Column(name="street")
 	@NotEmpty(message = "*Please provide your street")
 	private String street;
@@ -21,11 +21,11 @@ public class Address {
 	@NotEmpty(message = "*Please provide your city")
 	private String city;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
