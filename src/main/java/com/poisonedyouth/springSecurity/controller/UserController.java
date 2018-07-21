@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("user/home")
 public class UserController {
 
 	@Autowired
@@ -22,7 +23,7 @@ public class UserController {
 	@Autowired
 	private RoleService roleService;
 
-	@RequestMapping(value = "/user/home", method = RequestMethod.POST)
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String updateUser(@Valid User user, BindingResult bindingResult, Model model) {
 		model.addAttribute("allRoles", roleService.getAllRoles());
 		if (bindingResult.hasErrors()) {
