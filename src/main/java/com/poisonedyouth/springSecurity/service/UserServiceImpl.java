@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("userService")
@@ -44,6 +45,10 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<User> findAllUsersByRole(Role role) {
-		return userRepository.findAllByRole(role);
+		List<User> users = userRepository.findAllByRole(role);
+		if(users == null) {
+			users = new ArrayList<>();
+		}
+		return users;
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class LoginController {
@@ -57,7 +58,8 @@ public class LoginController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		model.addAttribute("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-		model.addAttribute("users", userService.findAllUsersByRole(roleService.findRoleById(2L)));
+		final List<User> users = userService.findAllUsersByRole(roleService.findRoleById(2L));
+		model.addAttribute("users", users);
 		return  "admin";
 	}
 

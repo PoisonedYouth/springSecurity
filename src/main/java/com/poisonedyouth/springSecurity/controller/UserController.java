@@ -24,7 +24,7 @@ public class UserController {
 	private RoleService roleService;
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String updateUser(@Valid User user, BindingResult bindingResult, Model model) {
+	public String editUser(@Valid User user, BindingResult bindingResult, Model model) {
 		model.addAttribute("allRoles", roleService.getAllRoles());
 		if (bindingResult.hasErrors()) {
 			return "registration";
