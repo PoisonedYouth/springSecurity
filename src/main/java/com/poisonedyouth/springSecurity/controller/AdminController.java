@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping(value = "admin/home")
 public class AdminController {
 
 	@Autowired
@@ -19,27 +20,28 @@ public class AdminController {
 	@Autowired
 	private RoleService roleService;
 
-	@RequestMapping(value = "admin/home/deleteUser/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable(value="userId") Long userId) {
 		User user = userService.findUserById(userId);
 		userService.deleteUser(user);
 		return "redirect:/admin/home";
 	}
 
-	@RequestMapping(value = "admin/home/editUser/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/editUser/{userId}", method = RequestMethod.GET)
 	public String editUser(@PathVariable(value="userId") Long userId) {
 		User user = userService.findUserById(userId);
 		userService.saveUser(user);
 		return "admin";
 	}
 
-	@RequestMapping(value = "admin/home/newUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
 	public String newUser(Model model) {
+		model.addAttribute("allRoles", roleService.getAllRoles());
 		model.addAttribute("user", new User());
 		return "newUser";
 	}
 
-	@RequestMapping(value = "admin/home/newUser", method = RequestMethod.POST)
+	@RequestMapping(value = "newUser", method = RequestMethod.POST)
 	public String newUser(@Valid User user, BindingResult bindingResult, Model model) {
 		model.addAttribute("allRoles", roleService.getAllRoles());
 		if (bindingResult.hasErrors()) {

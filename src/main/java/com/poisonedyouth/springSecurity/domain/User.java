@@ -32,11 +32,11 @@ public class User {
 	private String lastName;
 	@Column(name = "active")
 	private int active;
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL )
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name="role_id")
 	@NotNull(message = "*Please select your role")
 	private Role role;
-	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL )
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "address_id")
 	private Address address;
 
