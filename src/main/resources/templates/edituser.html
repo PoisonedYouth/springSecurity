@@ -11,18 +11,18 @@
 <div class="container">
     <h2 th:text="${userName}"></h2>
 
-    <h3>New User</h3>
+    <h3>Edit Profile</h3>
     <div class="container">
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#personaldata">Personal Data</a></li>
             <li><a data-toggle="tab" href="#addressdata">Address</a></li>
         </ul>
 
-        <form autocomplete="off" action="#" th:action="@{/admin/home/newUser}"
+        <form autocomplete="off" action="#" th:action="@{/user/home/editUser}"
               th:object="${user}" method="post" class="form-horizontal"
               role="form">
             <div th:include="fragments/userform :: userform">
-                <input type="text" th:field="*{email}" placeholder="Email" id="email"
+                <input type="text" th:field="*{email}" placeholder="Email" id="email" readonly
                        class="form-control"/> <label
                     th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
                     class="validation-message"></label>

@@ -6,31 +6,8 @@
     <!-- other elements you want to reference in your layout -->
 </head>
 <body>
-<form th:action="@{/}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
-</form>
+<div th:include="fragments/menu :: menu"></div>
 
-<div class="container">
-    <h2 th:text="${userName}"></h2>
-</div>
-
-<div class="container">
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#personaldata">Personal Data</a></li>
-        <li><a data-toggle="tab" href="#addressdata">Address</a></li>
-    </ul>
-
-    <form autocomplete="off" action="#" th:action="@{/edit}"
-          th:object="${user}" method="post" class="form-horizontal"
-          role="form">
-        <div th:include="fragments/userform :: userform">
-            <input type="text" th:field="*{email}" placeholder="Email" id="email" readonly
-                   class="form-control"/> <label
-                th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                class="validation-message"></label>
-        </div>
-    </form>
-</div>
 <footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>
